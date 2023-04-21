@@ -13,8 +13,7 @@
 * _ExchangeRate-API_
 
 ## Description
-
-
+This application allows the user to convert a desired value of a specified currency to a different designated currency using the ExchangeRate-API. Users are required to create a free account on the ExchangeRate-API website to generate an API key, which must be properly implemented into the program to function.
 
 ## Setup/Installation Requirements
  * Clone project from this [Github repository](https://github.com/MaxBetich/currency-exchanger.git) to your desktop.
