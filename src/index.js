@@ -5,11 +5,10 @@ import CurrencyExchanger from './js/currency-calculator';
 
 async function getExchangeRates(value, code) {
   const response = await CurrencyExchanger.getExchangeRates();
-   if (response["result"] === "success") {
+  if (response["result"] === "success") {
     const newCurrency = convertCurrency(response["conversion_rates"], value, code);
     return newCurrency;
   } else {
-    //console.log("this is the failure response", response);
     return response;
   }
 }
@@ -29,12 +28,14 @@ function printReturn(value, inputValue, inputCode) {
 }
 
 function printError(response) {
-  console.log("this is the error function");
-  console.log(response);
   let responseDiv = document.getElementById("response");
   responseDiv.innerText = null;
   let pTag = document.createElement("p");
-  pTag.append(response);
+  if (Object.is(response, NaN)) {
+    pTag.append("The ISO 4217 code you have entered either does not exist, or is not supported by this application. Please check the currency code and try again.");
+  } else {
+    pTag.append(response);
+  }
   responseDiv.append(pTag);
 }
 
@@ -43,7 +44,6 @@ async function handleFormSubmission(event) {
   const inputValue = parseFloat(document.getElementById("input-value").value);
   const inputCode = document.getElementById("code").value;
   const returnValue = await getExchangeRates(inputValue, inputCode);
-  //console.log("this is the returnValue", returnValue);
   if (Number.isFinite(returnValue)) {
     printReturn(returnValue, inputValue, inputCode);
   } else {
