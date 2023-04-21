@@ -4,9 +4,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Currency Exchanger</h1>
-    <p>Enter a value in USD and select a currency code to see the converted value based on current exchange rates.</p>
-    <form>
+    <form class="box1">
+      <h1>Currency Exchanger</h1>
+      <p>Enter a value in USD and select a currency code to see the converted value based on current exchange rates.</p>
       <label for="input-code">Enter a valid ISO 4217 currency code for the currency you wish to exchange from:</label>
       <input id="input-code" type="text" name="input-code"><br>
       <label for="input-value">Enter a value to exchange:</label>
@@ -16,7 +16,7 @@
       <p><a href="https://www.exchangerate-api.com/docs/supported-currencies">Click here for a list of supported ISO codes</a></p>
       <button type="submit" class="button-success">Convert</button>
     </form>
-    <div id="response"></div>
+    <div id="response" class="box1">Enter a currency and value you wish to exchange to your desired currency to see the exchanged value.</div>
   </div>
 </body>
 </html>
