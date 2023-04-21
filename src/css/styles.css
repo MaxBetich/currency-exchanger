@@ -9,6 +9,16 @@ body {
   background-size: cover;
 }
 
+button {
+  background-color: #87584a;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  font-size: 16px;
+  margin: auto;
+}
+
 .box1 {
   border: solid;
   border-color: black;
