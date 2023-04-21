@@ -8,7 +8,7 @@ async function getExchangeRates(value, code) {
   if (response["conversion_rates"]) {
     convertCurrency(response["conversion_rates"], value, code);
   } else {
-    printError(response);
+    return response;
   }
 }
 
@@ -18,3 +18,14 @@ function convertCurrency(rates, value, code) {
   return convertedValue;
 }
 
+function handleFormSubmission(event) {
+  event.preventDefault();
+  const inputValue = parseInt(document.getElementById("input-value").value);
+  const inputCode = document.getElementById("code").value;
+  const returnValue = getExchangeRates(inputValue, inputCode);
+  if (returnValue != Number) {
+    printError(returnValue);
+  } else {
+    printReturn(returnValue);
+  }
+}
