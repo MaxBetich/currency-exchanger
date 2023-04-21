@@ -26,7 +26,13 @@ function printReturn(value) {
   responseDiv.append(pTag);
 }
 
-
+function printError(response) {
+  let responseDiv = document.getElementById("response");
+  responseDiv.innerText = null;
+  let pTag = document.createElement("p");
+  pTag.append(response);
+  responseDiv.append(pTag);
+}
 
 function handleFormSubmission(event) {
   event.preventDefault();
