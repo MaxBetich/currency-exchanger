@@ -18,6 +18,16 @@ function convertCurrency(rates, value, code) {
   return convertedValue;
 }
 
+function printReturn(value) {
+  let responseDiv = document.getElementById("response");
+  responseDiv.innerText = null;
+  let pTag = document.createElement("p");
+  pTag.append(`The value of ${inputValue} USD is currently equivalent to ${value} ${inputCode}.`);
+  responseDiv.append(pTag);
+}
+
+
+
 function handleFormSubmission(event) {
   event.preventDefault();
   const inputValue = parseInt(document.getElementById("input-value").value);
