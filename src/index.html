@@ -7,10 +7,12 @@
     <h1>Currency Exchanger</h1>
     <p>Enter a value in USD and select a currency code to see the converted value based on current exchange rates.</p>
     <form>
-      <input id="input-value" type="number" name="input-value">
-      <label for="input-value">USD</label><br>
-      <label for="code">Enter a valid ISO 4217 currency code:</label>
-      <input id="code" type="text" name="code"><br>
+      <label for="input-code">Enter a valid ISO 4217 currency code for the currency you wish to exchange from:</label>
+      <input id="input-code" type="text" name="input-code"><br>
+      <label for="input-value">Enter a value to exchange:</label>
+      <input id="input-value" type="number" name="input-value"><br>
+      <label for="output-code">Enter a valid ISO 4217 currency code for the currency you wish to exchange to:</label>
+      <input id="output-code" type="text" name="output-code"><br>
       <p><a href="https://www.exchangerate-api.com/docs/supported-currencies">Click here for a list of supported ISO codes</a></p>
       <button type="submit" class="button-success">Convert</button>
     </form>

@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import CurrencyExchanger from './js/currency-calculator';
 
-async function getExchangeRates(value, code) {
-  const response = await CurrencyExchanger.getExchangeRates();
+async function getExchangeRates(inputCode, value, code) {
+  const response = await CurrencyExchanger.getExchangeRates(inputCode);
   if (response["result"] === "success") {
     const newCurrency = convertCurrency(response["conversion_rates"], value, code);
     return newCurrency;
@@ -19,11 +19,11 @@ function convertCurrency(rates, value, code) {
   return convertedValue;
 }
 
-function printReturn(value, inputValue, inputCode) {
+function printReturn(value, inputValue, inputCode, outputCode) {
   let responseDiv = document.getElementById("response");
   responseDiv.innerText = null;
   let pTag = document.createElement("p");
-  pTag.append(`The value of ${inputValue} USD is currently equivalent to ${value} ${inputCode}.`);
+  pTag.append(`The value of ${inputValue} ${inputCode} is currently equivalent to ${value} ${outputCode}.`);
   responseDiv.append(pTag);
 }
 
@@ -42,10 +42,11 @@ function printError(response) {
 async function handleFormSubmission(event) {
   event.preventDefault();
   const inputValue = parseFloat(document.getElementById("input-value").value);
-  const inputCode = document.getElementById("code").value;
-  const returnValue = await getExchangeRates(inputValue, inputCode);
+  const inputCode = document.getElementById("input-code").value;
+  const outputCode = document.getElementById("output-code").value;
+  const returnValue = await getExchangeRates(inputCode, inputValue, outputCode);
   if (Number.isFinite(returnValue)) {
-    printReturn(returnValue, inputValue, inputCode);
+    printReturn(returnValue, inputValue, inputCode, outputCode);
   } else {
     printError(returnValue);
   }

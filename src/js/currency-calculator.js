@@ -1,7 +1,7 @@
 export default class CurrencyExchanger {
 
-  static async getExchangeRates() {
-    let urlString = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
+  static async getExchangeRates(inputCode) {
+    let urlString = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${inputCode}`;
     try {
       const response = await fetch(urlString);
       const jsonifiedResponse = await response.json();
