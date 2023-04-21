@@ -11,3 +11,10 @@ async function getExchangeRates(value, code) {
     printError(response);
   }
 }
+
+function convertCurrency(rates, value, code) {
+  const exchangeRate = rates[code];
+  const convertedValue = value * exchangeRate;
+  return convertedValue;
+}
+
