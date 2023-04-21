@@ -6,22 +6,21 @@ import CurrencyExchanger from './js/currency-calculator';
 async function getExchangeRates(value, code) {
   const response = await CurrencyExchanger.getExchangeRates();
    if (response["result"] === "success") {
-    convertCurrency(response["conversion_rates"], value, code);
+    const newCurrency = convertCurrency(response["conversion_rates"], value, code);
+    return newCurrency;
   } else {
+    //console.log("this is the failure response", response);
     return response;
   }
 }
 
 function convertCurrency(rates, value, code) {
   const exchangeRate = rates[code];
-  console.log("this is the exchange rate ", exchangeRate);
   const convertedValue = value * exchangeRate;
   return convertedValue;
 }
 
 function printReturn(value, inputValue, inputCode) {
-  // console.log("this is the return function");
-  // console.log(value);
   let responseDiv = document.getElementById("response");
   responseDiv.innerText = null;
   let pTag = document.createElement("p");
@@ -30,8 +29,8 @@ function printReturn(value, inputValue, inputCode) {
 }
 
 function printError(response) {
-  // console.log("this is the error function");
-  // console.log(response);
+  console.log("this is the error function");
+  console.log(response);
   let responseDiv = document.getElementById("response");
   responseDiv.innerText = null;
   let pTag = document.createElement("p");
@@ -44,10 +43,11 @@ async function handleFormSubmission(event) {
   const inputValue = parseFloat(document.getElementById("input-value").value);
   const inputCode = document.getElementById("code").value;
   const returnValue = await getExchangeRates(inputValue, inputCode);
-  if (returnValue != Number) {
-    printError(returnValue);
-  } else {
+  //console.log("this is the returnValue", returnValue);
+  if (Number.isFinite(returnValue)) {
     printReturn(returnValue, inputValue, inputCode);
+  } else {
+    printError(returnValue);
   }
 }
 

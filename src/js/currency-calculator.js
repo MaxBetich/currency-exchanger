@@ -6,7 +6,8 @@ export default class CurrencyExchanger {
       const response = await fetch(urlString);
       const jsonifiedResponse = await response.json();
       if (!response.ok) {
-        const errorMessage = `${response.status} ${response.statusText} ${jsonifiedResponse.message}`;
+        console.log("this is the error response", response);
+        const errorMessage = `${response["error-type"]}`;
         throw new Error(errorMessage);
       }
       return jsonifiedResponse;
